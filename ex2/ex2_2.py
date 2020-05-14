@@ -20,6 +20,7 @@ def execution(reader,filename):
     result = addDigits(nums)
     wf = open(filename, 'w')
     wf.write(str(result) + '\n')
+    wf.close()
 
 
 in_name = './id.txt'
@@ -27,6 +28,7 @@ out_name = './result.txt'
 
 rf = open(in_name, 'r')
 execution(rf,out_name)
+rf.close()
 
 
 
