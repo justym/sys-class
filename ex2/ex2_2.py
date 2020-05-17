@@ -14,8 +14,10 @@ def addDigits(nums: list):
 
     return result
 
-def execution(reader,filename):
-    text = reader.read()
+def execution(src,dest):
+    rf = open(src, 'r')
+    text = rf.read()
+    rf.close()
     nums = converter(text)
     result = addDigits(nums)
     wf = open(filename, 'w')
@@ -26,9 +28,8 @@ def execution(reader,filename):
 in_name = './id.txt'
 out_name = './result.txt'
 
-rf = open(in_name, 'r')
-execution(rf,out_name)
-rf.close()
+execution(in_name,out_name)
+
 
 
 
