@@ -14,13 +14,13 @@ def addDigits(nums: list):
 
     return result
 
-def execution(src,dest):
+def execution(src, dest: str):
     rf = open(src, 'r')
     text = rf.read()
     rf.close()
     nums = converter(text)
     result = addDigits(nums)
-    wf = open(filename, 'w')
+    wf = open(dest, 'w')
     wf.write(str(result) + '\n')
     wf.close()
 
