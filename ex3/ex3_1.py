@@ -20,6 +20,7 @@ while True:
         GPIO.output(led, 1)
         time.sleep(assigned_seconds)
         GPIO.output(led, 0)
+        print("turn off")
         break
     
 #clean up
