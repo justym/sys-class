@@ -18,19 +18,13 @@ p.start(0)
 p.ChangeDutyCycle(2.5)
 time.sleep(1)
 
+ls = [-90, -45, 0, 45, 90]
 for i in range(3):
-    p.ChangeDutyCycle(2.5)
-    time.sleep(1)
-    p.ChangeDutyCycle(5)
-    time.sleep(1)
-    p.ChangeDutyCycle(7.5)
-    time.sleep(1)
-    p.ChangeDutyCycle(9.75)
-    time.sleep(1)
-    p.ChangeDutyCycle(12)
-    time.sleep(1)
-    p.ChangeDutyCycle(2.5)
-    time.sleep(1)
+    for degree in ls:
+        dc = 2.5 + (12.0 - 2.5) / 180 * (degree + 90)
+        p.ChangeDutyCycle(dc)
+        time.sleep(1)
+    
 
 p.stop()
 GPIO.cleanup()
