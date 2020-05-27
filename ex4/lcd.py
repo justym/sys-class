@@ -2,7 +2,7 @@
 
 import smbus
 import time
-import datetime
+
 
 # Define some device parameters
 I2C_ADDR  = 0x3F # I2C device address, if any error, change this address to 0x27
@@ -82,16 +82,13 @@ def main():
   lcd_init()
   
   while True:
-    now = datetime.datetime.now()
     # Send some test
-    lcd_string("s1260249",LCD_LINE_1)
-    lcd_string("Yuhei Morishita",LCD_LINE_2)
+    lcd_string("Welcome ",LCD_LINE_1)
+    lcd_string("Good Morning",LCD_LINE_2)
     time.sleep(3)
     # Send some more text
-    ymd = "{0:%Y.%m.%d}".format(now)
-    hms = "{0:%H:%M:%S}".format(now)
-    lcd_string(ymd,LCD_LINE_1)
-    lcd_string(hms,LCD_LINE_2)
+    lcd_string("IES 1",LCD_LINE_1)
+    lcd_string("Exercise 4",LCD_LINE_2)
     time.sleep(3)
 
 if __name__ == '__main__':
