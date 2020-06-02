@@ -1,0 +1,7 @@
+fswebcam
+pic_size
+    fswebcam -r 640x480 ex5_1.jpg
+pic_after5sec
+    fswebcam -r 640x480 -D 5 ex5_2.jpg
+pic_skip20frames
+    fwebcam  -r 640x480 -S 20 ex5_3.jpg
