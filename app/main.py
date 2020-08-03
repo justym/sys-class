@@ -3,6 +3,7 @@ import smbus
 import time
 import json
 import datetime
+import os
 
 # Define some device parameters
 I2C_ADDR = 0x3F  # I2C device address, if any error, change this address to 0x27
@@ -81,24 +82,28 @@ def lcd_string(message, line):
 
 def main():
     # Main program block
-    today = datetime.datetime.now()
-    filename = "./datesets/" + "{0:%Y_%m_%d}".format(now) + "json"
-    newAlbums = json.load(filename)
+    now = datetime.datetime.now()
+    path = os.path.relpath(
+        "./datasets/" + "{0:%Y_%m_%d}".format(now) + ".json")
+    fp = open(path, 'r')
+    newAlbums = json.load(fp)
+
     # Initialise display
     lcd_init()
 
-    for (i, album) in enumerate(newAlbums):
+    for album in newAlbums:
         # Send some test
-        lcd_string(i, LCD_LINE_1)
-        lcd_string(album.date, LCD_LINE_2)
-        time.sleep(3)
-        lcd_string(album.name[:LCD_WIDTH], LCD_LINE_1)
-        lcd_string(album.artist[:LCD_WIDTH], LCD_LINE_2)
+        lcd_string(album['date'], LCD_LINE_1)
+        time.sleep(2)
+        lcd_string(album['name'][:LCD_WIDTH], LCD_LINE_1)
+        lcd_string(album['name'][LCD_WIDTH:2*LCD_WIDTH], LCD_LINE_2)
+        time.sleep(6)
+        lcd_string(album['artist'][:LCD_WIDTH], LCD_LINE_1)
+        lcd_string(album['artist'][LCD_WIDTH:2*LCD_WIDTH], LCD_LINE_2)
         time.sleep(3)
 
 
 if __name__ == "__main__":
-
     try:
         main()
     except KeyboardInterrupt:
